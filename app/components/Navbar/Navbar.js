@@ -1,68 +1,77 @@
+'use client'
 import React from "react";
+import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Navbar = () => {
+
+  const notify = () =>  toast.success("CV was downloaded successfully!", {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    });
+
+    // Posicionarlo por debajo del navbar, cambiarle el color a un verde DaisyUI #36d399, pasar la letra a minuscula. Letra gris oscura.
+
   return (
-    <div className="navbar bg-base-100 fixed z-10">
-      <div className="navbar-start">
-        <a className="btn btn-ghost normal-case text-xl w-1/5">Home</a>
+    <div className="navbar bg-base-100 fixed z-10 justify-between md:justify-end">
+      <div className="navbar-start md:hidden">
+        <a className="btn btn-ghost normal-case text-xl w-1/5">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+            />
+          </svg>
+        </a>
       </div>
-      <div className="navbar-end hidden md:flex w-4/5 justify-end">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <a>About</a>
-          </li>
-          <li>
-            <a>Resume</a>
-          </li>
-          <li>
-            <a>Portfolios</a>
-          </li>
-          <li>
-            <a>Blogs</a>
-          </li>
-          <li>
-            <a>Contact</a>
-          </li>
-        </ul>
-      </div>
-      <div className="navbar-end md:hidden">
-        <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost btn-circle">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h7"
-              />
-            </svg>
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-            style={{ right: "0px" }}>
-            <li className="h-10 items-center">
-              <a className="w-full">About</a>
-            </li>
-            <li className="h-10 items-center">
-              <a className="w-full">Resume</a>
-            </li>
-            <li className="h-10 items-center">
-              <a className="w-full">Portfolios</a>
-            </li>
-            <li className="h-10 items-center">
-              <a className="w-full">Blogs</a>
-            </li>
-            <li className="h10 items-center">
-              <a className="w-full">Contact</a>
-            </li>
-          </ul>
-        </div>
+      <div>
+        <button className="btn btn-primary mr-5 mt-2 mb-2" onClick={notify}>
+          <Link href="https://drive.google.com/uc?export=download&id=17GvspprTeHkuCFYDXa0uMdH1QmWIxhVq">
+            Download CV
+          </Link>
+          <ToastContainer />
+        </button>
+
+        <label
+          className="btn btn-circle swap swap-rotate navbar-end w-12 md:hidden mr-5"
+          htmlFor="my-drawer">
+          {/* this hidden checkbox controls the state */}
+          <input type="checkbox" />
+
+          {/* hamburger icon */}
+          <svg
+            className="swap-off fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 512 512">
+            <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
+          </svg>
+
+          {/* close icon */}
+          <svg
+            className="swap-on fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 512 512">
+            <polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
+          </svg>
+        </label>
       </div>
     </div>
   );
